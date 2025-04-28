@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Freelance Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to right, #f8f8f8, #e9ecef);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        header {
+            background: linear-gradient(90deg, #343a40, #495057);
+            padding: 20px;
+        }
+        
+        header nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        header nav ul li {
+            margin: 0 20px;
+        }
+        
+        header nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        
+        header nav ul li a:hover {
+            color: #d14b42;
+        }
+        
+        .home-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hero-bg.jpg') center center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 2s ease-in;
+        }
+        
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: slideInDown 1.5s ease-out;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            animation: slideInUp 2s ease-out;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6f61, #ff9472);
+            color: #fff;
+            font-size: 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(45deg, #d14b42, #ff6f61);
+            transform: scale(1.1);
+        }
+        
+        #about {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+        
+        #about h2 {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+        
+        #about p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .services-section {
+            background: linear-gradient(to bottom right, #f7f7f7, #dee2e6);
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .services-section h2 {
+            font-size: 40px;
+            margin-bottom: 60px;
+            color: #212529;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            background: linear-gradient(to top right, #ff6f61, #ffa07a);
+            color: #fff;
+            transform: translateY(-10px);
+        }
+        
+        .service-card i {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #ff6f61;
+        }
+        
+        .service-card:hover i {
+            color: #fff;
+        }
+        
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        #portfolio {
+            padding: 100px 20px;
+            background-color: #fff;
+        }
+        
+        #portfolio h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            display: block;
+        }
+        
+        .portfolio-item p {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+        }
+        
+        #contact {
+            background: linear-gradient(to right, #343a40, #495057);
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            margin-bottom: 10px;
+            
+        }
+        
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        form button {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6f61, #ffa07a);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        
+        form button:hover {
+            background: linear-gradient(45deg, #d14b42, #ff6f61);
+        }
+        
+        .success-message {
+            display: none;
+            color: #4CAF50;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        
+        @keyframes slideInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        footer {
+            background-color: #212529;
+            color: #fff;
+            text-align: center;
+            padding: 10px 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            color: #ffc107;
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            .social-links {
+                flex-direction: row;
+                gap: 1rem;
+            }
+        
+            .social-link {
+                font-size: 1.3rem;
+            }
+        
+            footer {
+                padding: 20px 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        
+            .social-link {
+                font-size: 1.2rem;
+            }
+        }
+        #form-data {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #copy-btn {
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #copy-btn:hover {
+            background: #45a049;
+        }
+        
+        .visible {
+            display: block !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="home-section">
+        <div class="hero">
+            <h1>Your Dream Website, Created</h1>
+            <p>Professional design & development tailored just for you!</p>
+            <a href="#contact" class="btn">Let's Get Started</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am a passionate freelance web designer and developer who builds stunning, interactive, and high-performing websites tailored to your brand's unique identity and needs.</p>
+    </section>
+
+    <section id="services" class="services-section">
+        <h2>Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Web Design</h3>
+                <p>Beautiful, intuitive UI/UX designs to capture user attention and drive engagement.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-code"></i>
+                <h3>Development</h3>
+                <p>Responsive full-stack web apps using modern frameworks and technologies.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Branding</h3>
+                <p>Custom logos, color schemes, and messaging strategies that define your brand.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Mobile Optimization</h3>
+                <p>Ensure your site looks great and performs well on all mobile devices.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="d18527807ab8ad236eae846cf5818bc4.png" alt="Project 1">
+                <p>Project 1: E-commerce Platform</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="Brit-Co-blog-landing-page.webp" alt="Project 2">
+                <p>Project 2: Interactive Blog</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="Screenshot 2025-04-28 213934.png" alt="Project 3">
+                <p>Project 3: Realestate (Estate_Bridge)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" style="background: #f1f1f1; padding: 80px 20px; text-align: center;">
+        <h2 style="font-size: 40px; margin-bottom: 50px;">Testimonials</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto;">
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                <p style="font-style: italic;">"Incredible work! The site exceeded all our expectations."</p>
+                <h4 style="margin-top: 20px; color: #ff6f61;">— Sarah J., Startup Founder</h4>
+            </div>
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                <p style="font-style: italic;">"Professional, creative, and super fast delivery. Highly recommend!"</p>
+                <h4 style="margin-top: 20px; color: #ff6f61;">— Rahul M., Business Owner</h4>
+            </div>
+            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+                <p style="font-style: italic;">"Delivered a polished and responsive website that my clients love."</p>
+                <h4 style="margin-top: 20px; color: #ff6f61;">— Priya K., Consultant</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" style="padding: 80px 20px; background: linear-gradient(to right, #f8f9fa, #e9ecef); text-align: center;">
+        <h2 style="font-size: 40px; color: #333;">Pricing Plans</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 50px;">
+            <div style="background: linear-gradient(135deg, #ffffff, #f1f1f1); border-radius: 20px; padding: 40px; width: 300px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <h3 style="color: #333; margin-bottom: 15px; font-size: 24px;">Starter</h3>
+                <p style="font-size: 28px; color: #ff6f61; font-weight: bold;">₹29,999</p>
+                <ul style="text-align: left; margin-top: 25px; line-height: 1.8; color: #555;">
+                    <li>5 Page Design</li>
+                    <li>Responsive Layout</li>
+                    <li>Basic Contact Form</li>
+                    <li>Delivery in 3 Days</li>
+                </ul>
+            </div>
+            <div style="background: linear-gradient(135deg, #ffffff, #f1f1f1); border-radius: 20px; padding: 40px; width: 300px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <h3 style="color: #333; margin-bottom: 15px; font-size: 24px;">Professional</h3>
+                <p style="font-size: 28px; color: #ff6f61; font-weight: bold;">₹49,999</p>
+                <ul style="text-align: left; margin-top: 25px; line-height: 1.8; color: #555;">
+                    <li>Up to 10 Pages</li>
+                    <li>Mobile Optimization</li>
+                    <li>SEO Ready</li>
+                    <li>Delivery in 5 Days</li>
+                </ul>
+            </div>
+            <div style="background: linear-gradient(135deg, #ffffff, #f1f1f1); border-radius: 20px; padding: 40px; width: 300px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <h3 style="color: #333; margin-bottom: 15px; font-size: 24px;">Business</h3>
+                <p style="font-size: 28px; color: #ff6f61; font-weight: bold;">₹69,999</p>
+                <ul style="text-align: left; margin-top: 25px; line-height: 1.8; color: #555;">
+                    <li>Unlimited Pages</li>
+                    <li>eCommerce Integration</li>
+                    <li>Advanced SEO</li>
+                    <li>Delivery in 7 Days</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        
+        <div id="success-message" class="success-message">Thank you! Your message has been recorded.</div>
+        
+        <div id="form-data">
+            <h3>Form Submission Data:</h3>
+            <pre id="data-display"></pre>
+            <button id="copy-btn">Copy Data</button>
+        </div>
+    </section> -->
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/avinashyadavpasham/" class="social-link">LinkedIn</a>
+            <a href="https://github.com/Avinashpasham07" class="social-link">GitHub</a>
+             <!-- <a href="avinashpasham18@gmail.com" class="social-link">EMail</a>  -->
+            <!-- <a href="#" class="social-link">Twitter</a> -->
+        </div> 
+        <p>&copy; 2025. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple success message display
+        if(window.location.hash === '#contact') {
+            document.getElementById('success-message').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none';
+            }, 5000);
+        }
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toLocaleString()
+            };
+            
+            // Store in localStorage
+            let submissions = JSON.parse(localStorage.getItem('formSubmissions') || '[]');
+            submissions.push(formData);
+            localStorage.setItem('formSubmissions', JSON.stringify(submissions));
+            
+            // Display success message
+            document.getElementById('success-message').style.display = 'block';
+            
+            // Display the collected data (for your reference)
+            document.getElementById('data-display').textContent = JSON.stringify(formData, null, 2);
+            document.getElementById('form-data').classList.add('visible');
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none';
+            }, 5000);
+        });
+        
+        // Copy button functionality
+        document.getElementById('copy-btn').addEventListener('click', function() {
+            const data = document.getElementById('data-display').textContent;
+            navigator.clipboard.writeText(data)
+                .then(() => alert('Data copied to clipboard!'))
+                .catch(err => console.error('Could not copy text: ', err));
+        });
+        
+        // Display all submissions in console (for debugging)
+        function showAllSubmissions() {
+            const submissions = JSON.parse(localStorage.getItem('formSubmissions')) || [];
+            console.log("All Form Submissions:", submissions);
+        }
+        
+        // Call this function to see all stored submissions
+        showAllSubmissions();
+    </script>
+</body>
+</html>
